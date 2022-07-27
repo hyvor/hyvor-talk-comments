@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hyvor Talk Comments</title>
+</head>
+<body>
+<script type="module" src="./src/index.tsx"></script>
+<hyvor-talk-comments
+    website-id="1"
+
+    page-id="hello"
+    page-url="/hello"
+    page-title=""
+    page-language=""
+    page-author=""
+
+    await
+
+    ht-domain="https://talk.hyvor.test"
+
+    mode="light"
+/>
+
+<script type="module">
+
+    // import { h, Component, render } from 'https://unpkg.com/preact?module';
+
+    const comments = document.querySelector('hyvor-talk-comments');
+    comments.addEventListener("comment-publish", function(event) {
+        console.log(event)
+        console.log("DAWLKWD")
+    })
+    comments.translations = {
+        id: "num"
+    }
+    comments.components = {
+        /*reactions: function(props) {
+            return h('h1', null, 'Hello World!' + props.id)
+        }*/
+    }
+
+    window.addEventListener("comment-publish", function() {
+        console.log("OOPS")
+    })
+    comments.render()
+
+    /*setTimeout(function() {
+        console.log("I AM CALLED")
+        comments.setAttribute('mode', 'dark');
+    }, 1000)*/
+</script>
+
+</body>
+</html>

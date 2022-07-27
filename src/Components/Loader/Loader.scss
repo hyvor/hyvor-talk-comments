@@ -1,0 +1,34 @@
+.loader-wrap {
+
+    text-align: center;
+
+    .loader-circle {
+        background-color: var(--ht-color-accent);
+        border-radius: 100%;
+        display: inline-block;
+        animation: loader-spinner 1.4s infinite ease-in-out both;
+        margin-right:1px;
+        &.loader-circle-1 {
+            animation-delay: -0.32s;
+        }
+        &.loader-circle-2 {
+            animation-delay: -0.16s;
+        }
+    }
+
+    @keyframes loader-spinner {
+        0% {
+            opacity:0;
+            transform: scale(0.3);
+        }
+        60% {
+            opacity:1;
+            transform:scale(1);
+        }
+        100% {
+            opacity:0;
+            transform:scale(0.3);
+        }
+    }
+
+}

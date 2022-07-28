@@ -2,10 +2,12 @@ import {h, ComponentProps, ComponentType} from "preact";
 import {components} from "../stores/configStore";
 import Reactions from "./Reactions/Reactions";
 import Loader from "./Loader/Loader";
+import Reaction from "./Reactions/Reaction";
 
 export const DefaultComponents = {
     loader: Loader,
-    reactions: Reactions
+    reactions: Reactions,
+    reaction: Reaction
 }
 
 type ReplaceableComponentProps<T extends keyof typeof DefaultComponents> = {

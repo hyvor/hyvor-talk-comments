@@ -1,9 +1,10 @@
-import {components, componentsDefinitionType, htDomain, website, websiteId} from "../stores/configStore";
-import ApiService from "../services/ApiService";
-import {InitCallResponse, loadingState} from "../types";
-import {page} from "../stores/pageStore";
+import {components, componentsDefinitionType, htDomain, language, website} from "./stores/configStore";
+import ApiService from "./services/ApiService";
+import {InitCallResponse, loadingState} from "./types";
+import {page} from "./stores/pageStore";
 import {useEffect, useState} from "preact/compat";
-import LoaderWrap from "./Loader/LoaderWrap";
+import LoaderWrap from "./Components/Loader/LoaderWrap";
+import Reactions from "./Components/Reactions/Reactions";
 
 interface AppProps {
 
@@ -38,7 +39,6 @@ interface AppProps {
 
 export default function App(props: AppProps) {
 
-    websiteId.set(props.website.id)
     htDomain.set(props.htDomain || 'https://talk.hyvor.com');
     components.set(props.components);
 
@@ -54,14 +54,17 @@ export default function App(props: AppProps) {
                 sso: props.sso,
             },
             success: (data) => {
-                // setStatus('success');
+                setStatus('success');
 
                 website.set(data.website)
                 page.set(data.page)
+                language.set(data.language)
             },
             error: () => {
                 setStatus('error');
-            }
+            },
+
+            websiteId: props.website.id
         })
 
     }, []);
@@ -72,10 +75,16 @@ export default function App(props: AppProps) {
     } else if (status === 'error') {
         body = 'Error';
     } else {
-        body = 'HEHE';
+
+        body = <div>
+            <Reactions />
+        </div>
+
     }
 
-    return <div id="app" part="app">
+    return <div id="app" part="app" style={{
+        /*width: website.get().*/
+    }}>
         { body }
     </div>
 }

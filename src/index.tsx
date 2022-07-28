@@ -1,5 +1,5 @@
 import { h, render} from 'preact'
-import App from "./Components/App";
+import App from "./App";
 import {componentsDefinitionType} from "./stores/configStore";
 // @ts-ignore
 import mainStyles from './styles.scss';

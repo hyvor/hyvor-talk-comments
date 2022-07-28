@@ -1,13 +1,13 @@
 {
     "compilerOptions": {
         "noImplicitAny": true,
-        "module": "es6",
-        "target": "ES2015",
+        "module": "ES2020",
+        "target": "es2015",
         "jsx": "react-jsx",
         "jsxImportSource": "preact",
         "allowJs": true,
         "moduleResolution": "node",
-        "strict": true
-    },
-    "include": ["resources/js/Embed"]
+        "strict": true,
+        "esModuleInterop": true
+    }
 }

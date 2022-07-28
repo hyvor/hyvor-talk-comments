@@ -41,13 +41,18 @@ class HyvorTalkComments extends HTMLElement {
 
             :host {
                 --ht-color-accent: #000000;
-                --ht-color-accent-text: #000000;
-                --ht-color-box: #000000;
-                --ht-color-box-text: #000000;
-                --ht-color-box-text-light: #0000000;
-                --ht-color-box-header-footer: #000000;
-                --ht-color-box-header-footer-text: #000000;
-                --ht-color-background-text: #0000000;
+                --ht-color-accent-text: #ffffff;
+                --ht-color-box: #ffffff;
+                --ht-color-box-text: #111111;
+                --ht-color-box-text-light: #aaaaaa;
+                --ht-color-box-header-footer: #fafafa;
+                --ht-color-box-header-footer-text: #484848;
+                --ht-color-background-text: #111111;
+                
+                --ht-box-shadow: 5px 5px 0px rgba(0,0,0,0.05);
+                --ht-box-radius: 10px;
+                --ht-box-border: 1px solid transparent;
+                --ht-button-radius: 10px;
             }
         `
         this.shadowRoot?.append(style)

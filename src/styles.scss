@@ -1,5 +1,12 @@
+$mobile: 640px;
+
+@import "./Components/Loader/Loader";
+@import './Components/Reactions/Reactions';
+
+* {
+    box-sizing: border-box;
+}
+
 #app {
 
 }
-
-@import "./Components/Loader/Loader";

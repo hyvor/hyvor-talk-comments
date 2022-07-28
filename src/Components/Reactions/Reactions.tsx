@@ -1,12 +1,17 @@
 import {h} from 'preact'
 import conf from "../../helpers/stateful/conf";
 import t from "../../helpers/stateful/t";
-import {ReactionConfig} from "../../types";
+import {ReactionConfig, ReactionType} from "../../types";
 import Reaction from "./Reaction";
+import ReplaceableComponent from "../ReplaceableComponent";
 
 export default function Reactions() {
 
     const types = ['superb', 'love', 'wow', 'sad', 'laugh', 'angry'];
+
+    function handleClick(type: ReactionType) {
+
+    }
 
     return <div
         className="reactions-wrap"
@@ -27,10 +32,13 @@ export default function Reactions() {
 
                     const reaction = conf('reactions').find(r => r.type === type) as ReactionConfig;
 
-                    return <Reaction
+                    return <ReplaceableComponent
+                        name="reaction"
                         hasReacted={false}
                         reaction={reaction}
                         count={0}
+                        onClick={handleClick}
+                        displayType={conf('reaction_display_type')}
                     />
 
                 })

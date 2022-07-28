@@ -41,10 +41,12 @@ export interface Website {
 
     top_widget: 'none' | 'reactions' | 'ratings',
     reactions: ReactionConfig[]
+    reaction_display_type: ReactionDisplayType
 
 }
 
 export type ReactionType = 'superb' | 'love' | 'wow' | 'sad' |  'laugh' | 'angry';
+export type ReactionDisplayType = 'image' | 'text' | 'both';;
 
 export interface ReactionConfig {
     type: ReactionType,

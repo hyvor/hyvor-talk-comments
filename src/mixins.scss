@@ -1,0 +1,16 @@
+
+@mixin box {
+    border-radius: var(--ht-box-radius);
+    box-shadow: var(--ht-box-shadow);
+    border: var(--ht-box-border);
+}
+
+@mixin background-color-box {
+    background-color: var(--ht-color-box);
+    color: var(--ht-color-box-text);
+}
+
+@mixin background-color-accent {
+    background-color: var(--ht-color-accent);
+    color: var(--ht-color-accent-text);
+}

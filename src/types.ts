@@ -65,6 +65,15 @@ export interface ReactionConfig {
     text: string | null
 }
 
+/**
+ * Returned from the /react endpoint
+ * showing what changed
+ */
+export interface ReactionChange {
+    increased: ReactionType | null,
+    decreased: ReactionType | null
+}
+
 export interface Language {
     code: string,
     translations: Partial<TranslationsType>,

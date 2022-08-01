@@ -1,7 +1,7 @@
 import {htDomain, website} from "../stores/configStore";
+import {page} from "../stores/pageStore";
 
 interface CallOptions<T> {
-    method: 'post' | 'get',
     endpoint: string,
     data: object | FormData,
 
@@ -38,16 +38,21 @@ export default class ApiService {
                 }
             }
         }
-        xhr.open(opt.method, url)
+        xhr.open("POST", url)
 
-        const isPostAndNotFormData = opt.method === 'post' && !(opt.data instanceof FormData)
-        if (isPostAndNotFormData) {
+        if (!(opt.data instanceof FormData)) {
             xhr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
         }
 
-        xhr.send(!(opt.data instanceof FormData) ? JSON.stringify(opt.data) : null)
+        xhr.send(opt.data instanceof FormData ? opt.data : JSON.stringify(opt.data))
 
         return xhr
+    }
+
+    static callPageApi<T>(opt: CallOptions<T>) {
+        const pageId = page.get().id
+        opt.endpoint = `/page/${pageId}` + opt.endpoint;
+        return ApiService.call(opt)
     }
 
 }

@@ -1,6 +1,7 @@
 import {atom, computed} from "nanostores";
-import {ReactionType} from "../types";
+import {ReactionChange, ReactionType} from "../types";
 import {page, updatePageValue} from "./pageStore";
+import ApiService from "../services/ApiService";
 
 export const reactions = computed(page, p => p.reactions);
 export const userReactionState = atom<ReactionType | null>(null);
@@ -22,6 +23,16 @@ export const handleReactionClick = (type: ReactionType) => {
     }
 
     changeReactionCounts(change);
+
+    ApiService.callPageApi<ReactionChange>({
+        endpoint: '/react',
+        data: {
+            type
+        },
+        success: (data) => {
+            console.log(data)
+        }
+    })
 
 }
 

@@ -1,22 +1,35 @@
-import {computed} from "nanostores";
+import {atom, computed} from "nanostores";
 import {ReactionType} from "../types";
-import {page} from "./pageStore";
+import {page, updatePageValue} from "./pageStore";
 
 export const reactions = computed(page, p => p.reactions);
+export const userReactionState = atom<ReactionType | null>(null);
 
 export const handleReactionClick = (type: ReactionType) => {
 
-    let count = reactions.get()[type];
-    count += 10;
+    const oldType = userReactionState.get();
 
-    const p = page.get()
+    userReactionState.set(oldType === type ? null : type);
 
-    page.set({
-        ...p,
-        reactions: {
-            ...p.reactions,
-            [type]: count
-        }
-    });
+    const change = {} as Record<ReactionType, number>;
 
+    if (oldType) {
+        change[oldType] = -1;
+    }
+
+    if (type !== oldType) {
+        change[type] = +1;
+    }
+
+    changeReactionCounts(change);
+
+}
+
+
+function changeReactionCounts(obj: Record<ReactionType, number>) {
+    const reactionCopy = reactions.get();
+    for (const [key, value] of Object.entries(obj)) {
+        reactionCopy[key as ReactionType] += value
+    }
+    updatePageValue('reactions', reactionCopy);
 }

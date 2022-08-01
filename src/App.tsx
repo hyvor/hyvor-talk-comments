@@ -5,6 +5,7 @@ import {page} from "./stores/pageStore";
 import {useEffect, useState} from "preact/compat";
 import LoaderWrap from "./Components/Loader/LoaderWrap";
 import Reactions from "./Components/Reactions/Reactions";
+import { userReactionState} from "./stores/reactionsStore";
 
 interface AppProps {
 
@@ -59,6 +60,10 @@ export default function App(props: AppProps) {
                 website.set(data.website)
                 page.set(data.page)
                 language.set(data.language)
+
+                if (data.user_page_state) {
+                    userReactionState.set(data.user_page_state.reaction);
+                }
             },
             error: () => {
                 setStatus('error');

@@ -3,7 +3,17 @@ export type loadingState = 'loading' | 'success' | 'error';
 export type InitCallResponse = {
     page: Page,
     website: Website,
-    language: Language
+    language: Language,
+    user_page_state: UserPageState | null
+}
+
+export interface UserPageState {
+
+    notifs_count: number,
+    last_visit: number,
+    reaction: ReactionType | null,
+    votes: string[], // TODO: Change this
+
 }
 
 export interface Page {
@@ -46,7 +56,7 @@ export interface Website {
 }
 
 export type ReactionType = 'superb' | 'love' | 'wow' | 'sad' |  'laugh' | 'angry';
-export type ReactionDisplayType = 'image' | 'text' | 'both';;
+export type ReactionDisplayType = 'image' | 'text' | 'both';
 
 export interface ReactionConfig {
     type: ReactionType,

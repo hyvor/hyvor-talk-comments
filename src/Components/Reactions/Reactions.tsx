@@ -3,12 +3,13 @@ import conf from "../../helpers/stateful/conf";
 import t from "../../helpers/stateful/t";
 import {ReactionConfig, ReactionType} from "../../types";
 import ReplaceableComponent from "../ReplaceableComponent";
-import {handleReactionClick, reactions } from "../../stores/reactionsStore";
+import {handleReactionClick, reactions, userReactionState} from "../../stores/reactionsStore";
 import {useStore} from "@nanostores/preact";
 
 export default function Reactions() {
 
     const reactionsState = useStore(reactions)
+    const userReaction = useStore(userReactionState)
 
     const types = ['superb', 'love', 'wow', 'sad', 'laugh', 'angry'] as ReactionType[];
 
@@ -33,7 +34,7 @@ export default function Reactions() {
 
                     return <ReplaceableComponent
                         name="reaction"
-                        hasReacted={false}
+                        hasReacted={userReaction === type}
                         reaction={reaction}
                         count={reactionsState[type]}
                         onClick={handleReactionClick}

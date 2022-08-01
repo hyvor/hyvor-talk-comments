@@ -4,9 +4,9 @@ import {htDomain} from "../../stores/configStore";
 
 interface ReactionProps {
 
+    reaction: ReactionConfig,
     hasReacted: boolean, // Whether the user has reacted to the current reaction
     count: number,
-    reaction: ReactionConfig,
     onClick: (type: ReactionType) => void,
     displayType: ReactionDisplayType
 

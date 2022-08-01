@@ -2,16 +2,15 @@ import {h} from 'preact'
 import conf from "../../helpers/stateful/conf";
 import t from "../../helpers/stateful/t";
 import {ReactionConfig, ReactionType} from "../../types";
-import Reaction from "./Reaction";
 import ReplaceableComponent from "../ReplaceableComponent";
+import {handleReactionClick, reactions } from "../../stores/reactionsStore";
+import {useStore} from "@nanostores/preact";
 
 export default function Reactions() {
 
-    const types = ['superb', 'love', 'wow', 'sad', 'laugh', 'angry'];
+    const reactionsState = useStore(reactions)
 
-    function handleClick(type: ReactionType) {
-
-    }
+    const types = ['superb', 'love', 'wow', 'sad', 'laugh', 'angry'] as ReactionType[];
 
     return <div
         className="reactions-wrap"
@@ -36,8 +35,8 @@ export default function Reactions() {
                         name="reaction"
                         hasReacted={false}
                         reaction={reaction}
-                        count={0}
-                        onClick={handleClick}
+                        count={reactionsState[type]}
+                        onClick={handleReactionClick}
                         displayType={conf('reaction_display_type')}
                     />
 

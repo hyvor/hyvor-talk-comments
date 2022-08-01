@@ -18,7 +18,7 @@ export interface Page {
 
     comments_count: number,
 
-    reactions: number[],
+    reactions: Record<ReactionType, number>,
     ratings: {
         average: number,
         count: number

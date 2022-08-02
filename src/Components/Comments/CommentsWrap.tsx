@@ -17,7 +17,6 @@ export default function CommentsWrap() {
 
     }
 
-
     return <div className="comments-wrap">
         <CommentsHeader />
         { body }

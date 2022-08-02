@@ -6,6 +6,7 @@ import {useEffect, useState} from "preact/compat";
 import LoaderWrap from "./Components/Loader/LoaderWrap";
 import Reactions from "./Components/Reactions/Reactions";
 import { userReactionState} from "./stores/reactionsStore";
+import CommentsWrap from "./Components/Comments/CommentsWrap";
 
 interface AppProps {
 
@@ -48,7 +49,6 @@ export default function App(props: AppProps) {
     useEffect(() => {
 
         ApiService.call<InitCallResponse>({
-            method: "post",
             endpoint: "/init",
             data: {
                 page: props.page,
@@ -83,12 +83,14 @@ export default function App(props: AppProps) {
 
         body = <div>
             <Reactions />
+            <CommentsWrap />
         </div>
 
     }
 
     return <div id="app" part="app" style={{
-        /*width: website.get().*/
+        width: 750,
+        margin: "auto"
     }}>
         { body }
     </div>

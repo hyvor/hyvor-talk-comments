@@ -83,5 +83,8 @@ export interface Language {
 export type TranslationsType = Record<TranslationsKeys, string>;
 
 export type TranslationsKeys =
-    'reactions_text'
+    'reactions_text' |
+    'comments_0' |
+    'comments_1' |
+    'comments_multi'
 ;

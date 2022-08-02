@@ -1,0 +1,8 @@
+@import "../../mixins";
+
+.comments-wrap {
+
+    @include box;
+    @include background-color-box;
+
+}

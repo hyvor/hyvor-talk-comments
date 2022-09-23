@@ -1,3 +1,5 @@
+
+
 .collapser {
     position: absolute;
     left:14px; // left padding + 2
@@ -21,5 +23,20 @@
 
     &:hover .collapse-bar {
         opacity: 0.5;
+    }
+}
+
+.comment.collapsed {
+
+    .collapser, .comment-content, .comment-actions, .comment-replies {
+        display: none;
+    }
+
+}
+
+.expander {
+    margin-top: 6px;
+    .icon {
+        font-size: 0.6rem;
     }
 }

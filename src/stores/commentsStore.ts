@@ -1,5 +1,5 @@
 import {atom} from "nanostores";
-import {Comment, CommentsListStateType, SortType} from "../types";
+import {Comment, CommentsListIndex, CommentsListStateType, SortType} from "../types";
 
 /**
  * Comments view in the box
@@ -26,3 +26,22 @@ export const commentsHasMoreIdsState = atom<number[]>();
 
 // === API ===
 
+
+
+// === Helpers ===
+
+export function getRepliesCount(commentId: number, nested: boolean = false) {
+
+    const commentIds = commentsListState.get()[commentId] || [];
+    let count = 0;
+
+    commentIds.forEach(id => {
+        count++;
+
+        if (nested) {
+            count += getRepliesCount(id, nested);
+        }
+    })
+
+    return count;
+}

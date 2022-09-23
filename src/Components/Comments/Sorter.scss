@@ -12,10 +12,6 @@
 .sort-button {
     text-transform: capitalize;
     user-select: none;
-    cursor: pointer;
-    border:none;
-    background: transparent;
-    appearance: none;
     padding: 0 10px 0 0;
 }
 
@@ -42,9 +38,6 @@
     }
 
     button {
-        appearance: none;
-        border: none;
-        background: transparent;
         display: block;
         width: 100%;
         text-align: left;

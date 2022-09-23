@@ -118,8 +118,10 @@ export type TranslationsKeys =
     'pending' |
     'loved_by' |
     'team' |
-    'author'
+    'author' |
 
+    'expand_comment' |
+    'expand_comments'
 
 ;
 

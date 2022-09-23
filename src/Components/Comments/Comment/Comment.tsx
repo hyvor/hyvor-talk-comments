@@ -1,4 +1,4 @@
-import {Fragment, h} from 'preact'
+import {h} from 'preact'
 import {Comment as CommentType} from "../../../types";
 import conf from "../../../helpers/stateful/conf";
 import ProfilePicture from "../../User/ProfilePicture";
@@ -8,11 +8,19 @@ import TimeAgo from "../../Misc/TimeAgo";
 import t from "../../../helpers/stateful/t";
 import {website} from "../../../stores/configStore";
 import CommentsList from "../CommentsList";
-import Collapser from "./Collapser";
+import Collapser, {Expander} from "./Collapser";
+import {useState} from "preact/compat";
 
 export default function Comment({ comment } : { comment: CommentType }) {
 
-    return <div class="comment">
+    const [isCollapsed, setIsCollapsed] = useState(false);
+
+    return <div
+        class={
+            "comment" +
+            (isCollapsed ? " collapsed" : "")
+        }
+    >
 
         <div class="comment-inside">
 
@@ -42,6 +50,7 @@ export default function Comment({ comment } : { comment: CommentType }) {
 
                 </div>
 
+
                 <div className="comment-meta">
                     <span className="comment-user-name"><UserName user={comment.user}/></span>
                     <span className="comment-time"><TimeAgo time={comment.created_at}/></span>
@@ -55,15 +64,23 @@ export default function Comment({ comment } : { comment: CommentType }) {
 
                 </div>
 
+                {
+                    isCollapsed &&
+                    <Expander
+                        commentId={comment.id}
+                        onExpand={() => setIsCollapsed(false)}
+                    />
+                }
+
             </div>
 
         </div>
 
         <div class="comment-replies">
-            <CommentsList index={comment.id} />
+            <CommentsList index={comment.id}/>
         </div>
 
-        <Collapser />
+        <Collapser onCollapse={() => setIsCollapsed(true)} />
 
     </div>
 

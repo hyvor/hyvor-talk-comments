@@ -1,0 +1,25 @@
+.collapser {
+    position: absolute;
+    left:14px; // left padding + 2
+    width: 28px; // image width 32 - 4
+    top: 48px; // image height 32 + top padding 12 + 4
+    height: calc(100% - 48px);
+    cursor: pointer;
+
+
+    .collapse-bar {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 100%;
+        width: 2px;
+        background-color: var(--ht-color-accent);
+        opacity: 0.05;
+        border-radius: 20px;
+    }
+
+    &:hover .collapse-bar {
+        opacity: 0.5;
+    }
+}

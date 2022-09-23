@@ -1,5 +1,68 @@
-
-
 #sorter {
-    margin-bottom: 2px;
+    margin-bottom: 4px;
+    font-size: 0.85rem;
+    position: relative;
+
+    .icon {
+        font-size: 0.7em;
+        margin-left: 1px;
+    }
+}
+
+.sort-button {
+    text-transform: capitalize;
+    user-select: none;
+    cursor: pointer;
+    border:none;
+    background: transparent;
+    appearance: none;
+    padding: 0 10px 0 0;
+}
+
+.sort-selector {
+    @include box;
+    @include background-color-box;
+
+    position: absolute;
+    top:100%;
+    left:0;
+    margin-top: 5px;
+    width: 120px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-5px);
+    transition: .1s transform, .1s opacity;
+    overflow: hidden;
+    z-index: 2001;
+
+    &.open {
+        opacity: 1;
+        pointer-events: initial;
+        transform: translateY(0px);
+    }
+
+    button {
+        appearance: none;
+        border: none;
+        background: transparent;
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 6px 16px;
+        text-transform: capitalize;
+        cursor: pointer;
+        &.active {
+            background-color: var(--ht-color-accent);
+            color: var(--ht-color-accent-text);
+        }
+    }
+}
+
+.sort-selector-outside-clicker {
+    z-index: 2000;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left:0;
+    top:0;
 }

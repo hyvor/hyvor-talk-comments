@@ -50,6 +50,7 @@ class HyvorTalkComments extends HTMLElement {
                 --ht-color-background-text: #111111;
                 
                 --ht-box-shadow: 5px 5px 0px rgba(0,0,0,0.05);
+                --ht-box-shadow: 0 0 15px 4px rgba(0,0,0,0.05);
                 --ht-box-radius: 10px;
                 --ht-box-border: 0px solid transparent;
                 --ht-button-radius: 10px;

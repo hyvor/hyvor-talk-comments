@@ -13,7 +13,7 @@ export default function CommentsList({ index } : CommentsListProps) {
     const ids = useStore(commentsListState)[index] || [];
     const comments = useStore(commentsIndexedState);
 
-    return <div>
+    return <div class={"comments-list" + (index === 'PARENT' ? " parent" : "")}>
 
         {
             ids.map(id => <Comment comment={comments[id]}/>)

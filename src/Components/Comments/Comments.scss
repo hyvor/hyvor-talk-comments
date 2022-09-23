@@ -3,7 +3,12 @@
 }
 
 #comments {
-
     margin-top: 20px;
+}
 
+.comments-list {
+    margin-bottom: 4px;
+    &.parent {
+        margin: 0 -12px;
+    }
 }

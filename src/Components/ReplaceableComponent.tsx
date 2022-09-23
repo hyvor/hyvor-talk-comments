@@ -3,11 +3,16 @@ import {components} from "../stores/configStore";
 import Reactions from "./Reactions/Reactions";
 import Loader from "./Loader/Loader";
 import Reaction from "./Reactions/Reaction";
+import {icons} from "./Icon/Icon";
 
 export const DefaultComponents = {
     loader: Loader,
     reactions: Reactions,
-    reaction: Reaction
+    reaction: Reaction,
+
+    'icon.star': icons.star,
+    'icon.heart': icons.heart,
+    'icon.caret': icons.caret,
 }
 
 type ReplaceableComponentProps<T extends keyof typeof DefaultComponents> = {

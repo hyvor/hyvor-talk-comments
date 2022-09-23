@@ -10,6 +10,11 @@
     color: var(--ht-color-box-text);
 }
 
+@mixin background-color-box-secondary {
+    background-color: var(--ht-color-box-secondary);
+    color: var(----ht-color-box-secondary-text);
+}
+
 @mixin background-color-accent {
     background-color: var(--ht-color-accent);
     color: var(--ht-color-accent-text);

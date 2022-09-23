@@ -45,13 +45,13 @@ class HyvorTalkComments extends HTMLElement {
                 --ht-color-box: #ffffff;
                 --ht-color-box-text: #111111;
                 --ht-color-box-text-light: #aaaaaa;
-                --ht-color-box-header-footer: #fafafa;
-                --ht-color-box-header-footer-text: #484848;
+                --ht-color-box-secondary: #fafafa;
+                --ht-color-box-secondary-text: #484848;
                 --ht-color-background-text: #111111;
                 
                 --ht-box-shadow: 5px 5px 0px rgba(0,0,0,0.05);
                 --ht-box-radius: 10px;
-                --ht-box-border: 1px solid transparent;
+                --ht-box-border: 0px solid transparent;
                 --ht-button-radius: 10px;
             }
         `

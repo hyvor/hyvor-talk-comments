@@ -1,0 +1,10 @@
+{
+    "testEnvironment": "jsdom",
+    "transform": {
+        "^.+\\.m?[tj]sx?$": "babel-jest"
+    },
+    "extensionsToTreatAsEsm": [".ts", ".tsx"],
+    "transformIgnorePatterns": [
+        "<rootDir>/node_modules/(?!nanostores|preact|@testing-library/preact)"
+    ]
+}

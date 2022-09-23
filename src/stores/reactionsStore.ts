@@ -25,6 +25,7 @@ export const handleReactionClick = (type: ReactionType) => {
     changeReactionCounts(change);
 
     ApiService.callPageApi<ReactionChange>({
+        method: 'post',
         endpoint: '/react',
         data: {
             type

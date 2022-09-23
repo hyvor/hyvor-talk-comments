@@ -4,7 +4,8 @@ export type InitCallResponse = {
     page: Page,
     website: Website,
     language: Language,
-    user_page_state: UserPageState | null
+    user_page_state: UserPageState | null,
+    comments: CommentsCallResponse
 }
 
 export interface UserPageState {
@@ -36,9 +37,17 @@ export interface Page {
 
 }
 
+export type SortType = 'best' | 'newest' | 'oldest';
+
 export interface Website {
 
     id: number,
+    name: string,
+
+    is_profile_pictures_on: boolean,
+
+    default_sort: SortType,
+    default_avatar: string | null,
 
     text_comment_box: string | null,
     text_reply_box: string | null,
@@ -83,5 +92,62 @@ export interface Language {
 export type TranslationsType = Record<TranslationsKeys, string>;
 
 export type TranslationsKeys =
-    'reactions_text'
+    'reactions_text' |
+
+    'comments_0' |
+    'comments_1' |
+    'comments_multi' |
+
+    'just_now' |
+    'ago_seconds' |
+    'ago_day' |
+    'ago_days' |
+    'ago_hour' |
+    'ago_hours' |
+    'ago_minute' |
+    'ago_minutes' |
+    'ago_year' |
+    'ago_years' |
+
+    'featured' |
+    'pending' |
+    'loved_by' |
+    'team' |
+    'author'
+
 ;
+
+
+export interface Comment {
+    id: number,
+    created_at: number,
+    parent_id: number | null,
+    content: string
+    content_html: string,
+    is_featured: boolean,
+    is_loved: boolean,
+    upvotes: number,
+    downvotes: number,
+    depth: number,
+    user: User
+}
+
+export type CommentsListIndex = 'PARENT' | number;
+export type CommentsListStateType = Record<CommentsListIndex, number[]>;
+
+export interface CommentsCallResponse {
+    list: CommentsListStateType,
+    indexed: Record<number, Comment>,
+    has_more_ids: number[]
+}
+
+export interface User {
+    type: 'hyvor' | 'sso' | null,
+    id?: number,
+    name: string,
+    username: string,
+    picture_url: string | null,
+    bio: string | null,
+    location: string | null,
+    website_url: string | null,
+}

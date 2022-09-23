@@ -1,8 +1,7 @@
-import test from 'ava'
 import {language} from "../../stores/configStore";
 import languageBasedNumber from "./languageBasedNumber";
 
-test('default language works', t => {
+it('works with default language', () => {
 
     language.set({
         code: 'en-us',
@@ -10,11 +9,11 @@ test('default language works', t => {
         is_rtl: false
     })
 
-    t.is(languageBasedNumber(100), '100');
+    expect(languageBasedNumber(100)).toBe('100');
 
 });
 
-test('farsi', t => {
+it('works with farsi', () => {
 
     language.set({
         code: 'fa',
@@ -22,7 +21,7 @@ test('farsi', t => {
         is_rtl: false
     })
 
-    t.is(languageBasedNumber(1), '&\#1777;')
+    expect(languageBasedNumber(1)).toBe( '&\#1777;')
 
 });
 

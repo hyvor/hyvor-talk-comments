@@ -1,0 +1,9 @@
+.profile-picture-custom {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    opacity:0.6;
+    background-color: var(--ht-color-accent);
+    color: var(--ht-color-accent-text);
+    font-size: 0.8rem;
+}

@@ -2,6 +2,8 @@ import {htDomain, website} from "../stores/configStore";
 import {page} from "../stores/pageStore";
 
 interface CallOptions<T> {
+
+    method: 'post' | 'get',
     endpoint: string,
     data: object | FormData,
 

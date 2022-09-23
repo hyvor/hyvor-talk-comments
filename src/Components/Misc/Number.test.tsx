@@ -1,17 +1,16 @@
 import {h} from 'preact'
-import {render} from '@testing-library/preact'
 import Number from './Number'
-import test from "ava";
 import {language} from "../../stores/configStore";
+import {render} from '@testing-library/preact'
 
-test('normal Number', t => {
+it('normal Number', () => {
 
     const { container } = render(<Number number={1000} />)
-    t.is(container.textContent, '1000')
+    expect(container.textContent).toBe('1000')
 
 })
 
-test('farsi Number', t => {
+it('farsi Number', () => {
 
     language.set({
         code: 'fa',
@@ -20,6 +19,10 @@ test('farsi Number', t => {
     })
 
     const { container } = render(<Number number={19} />)
-    t.is(container.textContent, '۱۹')
+    expect(container.textContent).toBe('۱۹')
 
+})
+
+it('makes things', () => {
+    expect(1).toBe(1);
 })

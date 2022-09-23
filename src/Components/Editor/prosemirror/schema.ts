@@ -1,6 +1,6 @@
 import {Schema, NodeSpec, MarkSpec, DOMOutputSpec} from "prosemirror-model"
 
-const pDOM: DOMOutputSpec = ["p", 0], blockquoteDOM: DOMOutputSpec = ["blockquote", 0],
+const pDOM: DOMOutputSpec = ["div", 0], blockquoteDOM: DOMOutputSpec = ["blockquote", 0],
     hrDOM: DOMOutputSpec = ["hr"], preDOM: DOMOutputSpec = ["pre", ["code", 0]],
     brDOM: DOMOutputSpec = ["br"]
 
@@ -12,11 +12,11 @@ export const nodes = {
     } as NodeSpec,
 
     /// A plain paragraph textblock. Represented in the DOM
-    /// as a `<p>` element.
+    /// as a `<div>` element.
     paragraph: {
         content: "inline*",
         group: "block",
-        parseDOM: [{tag: "p"}],
+        parseDOM: [{tag: "p"}, {tag: "div"}],
         toDOM() { return pDOM }
     } as NodeSpec,
 
@@ -68,14 +68,6 @@ export const nodes = {
         toDOM(node) { let {src, alt, title} = node.attrs; return ["img", {src, alt, title}] }
     } as NodeSpec,
 
-    /// A hard line break, represented in the DOM as `<br>`.
-    hard_break: {
-        inline: true,
-        group: "inline",
-        selectable: false,
-        parseDOM: [{tag: "br"}],
-        toDOM() { return brDOM }
-    } as NodeSpec
 }
 
 const emDOM: DOMOutputSpec = ["em", 0], strongDOM: DOMOutputSpec = ["strong", 0], codeDOM: DOMOutputSpec = ["code", 0]

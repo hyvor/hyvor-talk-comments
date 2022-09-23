@@ -1,8 +1,9 @@
-@import "../../mixins";
-
 .comments-wrap {
+    padding: 20px 30px;
+}
 
-    @include box;
-    @include background-color-box;
+#comments {
+
+    margin-top: 20px;
 
 }

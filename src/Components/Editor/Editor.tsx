@@ -27,6 +27,6 @@ export default function Editor() {
 
     }, [])
 
-    return <div ref={ref} />
+    return <div style={{backgroundColor: "#fafafa"}} ref={ref} />
 
 }

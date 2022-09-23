@@ -1,20 +1,18 @@
-import CommentsCount from "./CommentsCount";
+import CommentsCount from "../CommentsCount/CommentsCount";
 
-export default function CommentsHeader() {
+export default function MainBoxHeader() {
 
-    // return null;
     return (
-        /*<div className="cb-header background-box-outline rounded-box">*/
-        <div className="comments-header-wrap">
-            <div className="comments-header">
-                <div className="comments-header-left">
+        <div className="main-box-header-wrap">
+            <div className="main-box-header">
+                <div className="main-box-header-left">
                     <CommentsCount />
                     {
                         // getConfigWebsiteSettings('is_realtime_online_count_on') ?
                         //     <OnlineCount /> : null
                     }
                 </div>
-                <div className="comments-header-right">
+                <div className="main-box-header-right">
                     {/*<Sort />*/}
                 </div>
             </div>

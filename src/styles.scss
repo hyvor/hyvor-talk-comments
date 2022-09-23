@@ -3,10 +3,14 @@ $mobile: 640px;
 @import "./Components/Loader/Loader";
 @import './Components/Reactions/Reactions';
 
-@import './Components/Comments/Comments';
-@import './Components/Comments/CommentsHeader';
-@import './Components/Comments/CommentsCount';
-@import './Components/Comments/CommentsBody';
+@import 'Components/MainBox/MainBox';
+@import 'Components/MainBox/MainBoxHeader';
+@import 'Components/Comments/Comments';
+@import 'Components/Comments/Comment/Comment';
+
+@import 'Components/CommentsCount/CommentsCount';
+@import 'Components/Icon/Icon';
+@import 'Components/User/ProfilePicture';
 
 * {
     box-sizing: border-box;

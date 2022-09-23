@@ -1,21 +1,21 @@
-.comments-header-wrap {
+.main-box-header-wrap {
 
     @include background-color-box-secondary;
 
     border-top-left-radius: var(--ht-box-radius);
     border-top-right-radius: var(--ht-box-radius);
 
-    .comments-header {
+    .main-box-header {
         display: flex;
         align-items: center;
         padding:20px 30px;
     }
 
-    .comments-header-left {
+    .main-box-header-left {
 
     }
 
-    .comments-header-right {
+    .main-box-header-right {
 
     }
 

@@ -3,8 +3,13 @@ import {commentsSortState} from "../../stores/commentsStore";
 import Icon from "../Icon/Icon";
 import {useState} from "preact/compat";
 import {SortType} from "../../types";
+import t from "../../helpers/stateful/t";
 
-export default function Sorter() {
+interface SorterProps {
+    onChange: (type: SortType) => void
+}
+
+export default function Sorter({onChange}: SorterProps) {
 
     const sort = useStore(commentsSortState);
 
@@ -13,13 +18,14 @@ export default function Sorter() {
     function handleClick(type: SortType) {
         setIsOpen(false);
         commentsSortState.set(type);
+        onChange(type);
     }
 
     function SortItem({type}: { type: SortType }) {
         return <button
             onClick={() => handleClick(type)}
             class={sort === type ? "active" : ""}
-        >{ type }</button>;
+        >{ t(type) }</button>;
     }
 
     return <div id="sorter">

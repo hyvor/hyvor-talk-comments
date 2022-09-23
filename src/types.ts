@@ -98,6 +98,11 @@ export type TranslationsKeys =
     'comments_1' |
     'comments_multi' |
 
+
+    'top' |
+    'newest' |
+    'oldest' |
+
     'just_now' |
     'ago_seconds' |
     'ago_day' |
@@ -114,6 +119,7 @@ export type TranslationsKeys =
     'loved_by' |
     'team' |
     'author'
+
 
 ;
 

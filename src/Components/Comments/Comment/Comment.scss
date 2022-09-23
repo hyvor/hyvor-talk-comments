@@ -1,7 +1,15 @@
 .comment {
-    display: flex;
-    padding: 15px 0;
     width:100%;
+    position: relative;
+    .comment-inside {
+        display: flex;
+        padding: 12px;
+        border-radius: var(--ht-box-radius);
+    }
+}
+
+.comment-replies {
+    margin-left: 32px;
 }
 
 .comment-side {

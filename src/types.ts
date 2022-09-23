@@ -37,7 +37,7 @@ export interface Page {
 
 }
 
-export type SortType = 'best' | 'newest' | 'oldest';
+export type SortType = 'top' | 'newest' | 'oldest';
 
 export interface Website {
 

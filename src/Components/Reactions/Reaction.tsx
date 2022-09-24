@@ -23,11 +23,13 @@ export default function Reaction({ hasReacted, count, reaction, onClick, display
             }
             onClick={() => onClick(reaction.type)}
         >
-        <span className="reaction-number"><Number number={ count } /></span>
-        {
-            (displayType === 'image' || displayType === 'both') &&
-            <img src={image} alt={reaction.text || reaction.type}/>
-        }
+        <span class="reaction-top">
+            {
+                (displayType === 'image' || displayType === 'both') &&
+                <img src={image} alt={reaction.text || reaction.type}/>
+            }
+            <span className="reaction-number"><Number number={ count } /></span>
+        </span>
         {
             (displayType === 'text' || displayType === 'both') &&
             <span className="reaction-text">{reaction.text}</span>

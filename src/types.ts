@@ -72,7 +72,7 @@ export interface ReactionConfig {
     type: ReactionType,
     is_shown: boolean,
     image_url: string | null,
-    text: string | null
+    text: string
 }
 
 /**
@@ -127,7 +127,7 @@ export type TranslationsKeys =
     'expand_comment' |
     'expand_comments' |
     'load_more_comments' |
-    'more_replies' 
+    'more_replies'
 
 ;
 

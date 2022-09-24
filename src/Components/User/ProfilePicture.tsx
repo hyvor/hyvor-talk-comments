@@ -2,6 +2,7 @@ import {h} from 'preact';
 import { useState } from 'preact/hooks';
 import conf from "../../helpers/stateful/conf";
 import {User} from "../../types";
+import ProfileOpener from "./ProfileOpener";
 
 interface ProfilePictureProps {
     user: User,
@@ -28,18 +29,24 @@ export default function ProfilePicture({ user, size = 32 }: ProfilePictureProps)
         }
     }
 
-    return customElem || !srcState ?
-        <span
-            class="profile-picture-custom"
-            style={style}
-        >
-            {user.name.substring(0, 1)}
-        </span> :
-        <img
-            src={srcState}
-            alt={user.name}
-            loading="lazy"
-            onError={handleError}
-            style={style}
-        ></img>
+    return <ProfileOpener user={user}>
+        {
+            customElem || !srcState ?
+                <span
+                    class="profile-picture custom"
+                    style={style}
+                >
+                    {user.name.substring(0, 1)}
+                </span> :
+                <img
+                    class="profile-picture"
+                    src={srcState}
+                    alt={user.name}
+                    loading="lazy"
+                    onError={handleError}
+                    style={style}
+                ></img>
+        }
+    </ProfileOpener>
+
 }

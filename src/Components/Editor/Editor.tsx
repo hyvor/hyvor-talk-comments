@@ -27,6 +27,6 @@ export default function Editor() {
 
     }, [])
 
-    return <div style={{backgroundColor: "#fafafa"}} ref={ref} />
+    return <div class="comments-editor" ref={ref} />
 
 }

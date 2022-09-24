@@ -1,4 +1,4 @@
-import {components, componentsDefinitionType, htDomain, language, website} from "./stores/configStore";
+import {components, componentsDefinitionType, htDomain, language, website, websiteIdState} from "./stores/configStore";
 import ApiService from "./services/ApiService";
 import {InitCallResponse, loadingState} from "./types";
 import {page} from "./stores/pageStore";
@@ -13,6 +13,8 @@ import {
     commentsListState,
     commentsSortState
 } from "./stores/commentsStore";
+import AuthService from "./services/AuthService";
+import {userState} from "./stores/userStore";
 
 interface AppProps {
 
@@ -47,6 +49,7 @@ interface AppProps {
 
 export default function App(props: AppProps) {
 
+    websiteIdState.set(props.website.id);
     htDomain.set(props.htDomain || 'https://talk.hyvor.com');
     components.set(props.components);
 
@@ -59,7 +62,7 @@ export default function App(props: AppProps) {
             endpoint: "/init",
             data: {
                 page: props.page,
-                sso: props.sso,
+                sso: props.sso
             },
             success: (data) => {
                 website.set(data.website)
@@ -68,6 +71,10 @@ export default function App(props: AppProps) {
 
                 if (data.user_page_state) {
                     userReactionState.set(data.user_page_state.reaction);
+                }
+
+                if (data.user) {
+                    userState.set(data.user);
                 }
 
                 commentsSortState.set(data.website.default_sort);
@@ -80,8 +87,6 @@ export default function App(props: AppProps) {
             error: () => {
                 setStatus('error');
             },
-
-            websiteId: props.website.id
         })
 
     }, []);

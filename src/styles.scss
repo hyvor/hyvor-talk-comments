@@ -13,7 +13,8 @@ $mobile: 640px;
 @import 'Components/CommentsCount/CommentsCount';
 @import 'Components/Icon/Icon';
 @import 'Components/Button/Button';
-@import 'Components/User/ProfilePicture';
+@import 'Components/User/User';
+@import 'Components/Editor/Editor';
 
 * {
     box-sizing: border-box;

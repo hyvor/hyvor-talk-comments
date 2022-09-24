@@ -1,0 +1,42 @@
+.profile-picture {
+
+    cursor: pointer;
+    
+    &.custom {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0.6;
+        background-color: var(--ht-color-accent);
+        color: var(--ht-color-accent-text);
+        font-size: 0.8rem;
+    }
+}
+
+.user-name {
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+
+.user-profile-popup-wrap {
+    position: fixed;
+    padding: 80px;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.3);
+    width: 100%;
+    height: 100%;
+    z-index: 20000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .popup-content {
+        @include box;
+        @include background-color-box;
+        width: 650px;
+        height: 100%;
+    }
+}

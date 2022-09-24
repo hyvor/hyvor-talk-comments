@@ -1,5 +1,6 @@
-import {htDomain, website} from "../stores/configStore";
+import {htDomain, website, websiteIdState} from "../stores/configStore";
 import {page} from "../stores/pageStore";
+import AuthService from "./AuthService";
 
 interface CallOptions<T> {
 
@@ -10,18 +11,13 @@ interface CallOptions<T> {
     complete?: () => void,
     success?: (data: T) => void,
     error?: (error: string | null) => void,
-
-    /**
-     * Only in the init call, when website store is not set
-     */
-    websiteId?: number
 }
 
 export default class ApiService {
 
     static call<T>(opt: CallOptions<T>) {
 
-        let url = htDomain.get() + "/api/embed/v3/" + (opt.websiteId || website.get().id) + opt.endpoint
+        let url = htDomain.get() + "/api/embed/v3/" + (websiteIdState.get()) + opt.endpoint
 
         const xhr = new XMLHttpRequest
         xhr.onreadystatechange = function() {
@@ -44,6 +40,11 @@ export default class ApiService {
 
         if (!(opt.data instanceof FormData)) {
             xhr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+        }
+
+        const token = AuthService.getToken();
+        if (token) {
+            xhr.setRequestHeader('X-Token', token);
         }
 
         xhr.send(opt.data instanceof FormData ? opt.data : JSON.stringify(opt.data))

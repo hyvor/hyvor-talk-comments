@@ -5,6 +5,7 @@ export type InitCallResponse = {
     website: Website,
     language: Language,
     user_page_state: UserPageState | null,
+    user: User | null,
     comments: CommentsCallResponse
 }
 
@@ -93,6 +94,9 @@ export type TranslationsType = Record<TranslationsKeys, string>;
 
 export type TranslationsKeys =
     'reactions_text' |
+
+    'login' |
+    'signup' |
 
     'comments_0' |
     'comments_1' |

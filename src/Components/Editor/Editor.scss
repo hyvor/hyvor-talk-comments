@@ -1,0 +1,10 @@
+.editor-wrap {
+    display: flex;
+}
+
+.comments-editor {
+    flex: 1;
+    margin-left: 10px;
+    @include background-color-box-secondary;
+    border-radius: var(--ht-box-radius);
+}

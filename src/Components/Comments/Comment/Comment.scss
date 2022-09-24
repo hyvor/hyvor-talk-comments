@@ -68,6 +68,10 @@
     margin: 0 10px;
     font-size: 0.8rem;
     color: var(--ht-color-box-text-light);
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .comment-content {

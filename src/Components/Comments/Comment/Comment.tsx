@@ -6,7 +6,7 @@ import Icon from "../../Icon/Icon";
 import UserName from "../../User/UserName";
 import TimeAgo from "../../Misc/TimeAgo";
 import t from "../../../helpers/stateful/t";
-import {website} from "../../../stores/configStore";
+import {htDomain, website} from "../../../stores/configStore";
 import CommentsList from "../CommentsList";
 import Collapser, {Expander} from "./Collapser";
 import {useState} from "preact/compat";
@@ -54,7 +54,11 @@ export default function Comment({ comment } : { comment: CommentType }) {
 
                 <div className="comment-meta">
                     <span className="comment-user-name"><UserName user={comment.user}/></span>
-                    <span className="comment-time"><TimeAgo time={comment.created_at}/></span>
+                    <a
+                        className="comment-time"
+                        href={htDomain.get() + "/comment/" + comment.id}
+                        target="_blank"
+                    ><TimeAgo time={comment.created_at}/></a>
                 </div>
 
                 <div className="comment-content">

@@ -7,6 +7,7 @@ $mobile: 640px;
 @import 'Components/MainBox/MainBoxHeader';
 @import 'Components/Comments/Comments';
 @import 'Components/Comments/Comment/Comment';
+@import 'Components/Comments/LoadMore';
 @import 'Components/Comments/Comment/Collapser';
 @import 'Components/Comments/Sorter';
 
@@ -15,6 +16,10 @@ $mobile: 640px;
 @import 'Components/Button/Button';
 @import 'Components/User/User';
 @import 'Components/Editor/Editor';
+
+body {
+    font-size: 16px;
+}
 
 * {
     box-sizing: border-box;
@@ -26,6 +31,8 @@ button {
     padding: 0;
     appearance: none;
     cursor: pointer;
+    font-weight: inherit;
+    font-size: inherit;
 }
 
 #app {

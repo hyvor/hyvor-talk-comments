@@ -125,7 +125,9 @@ export type TranslationsKeys =
     'author' |
 
     'expand_comment' |
-    'expand_comments'
+    'expand_comments' |
+    'load_more_comments' |
+    'more_replies' 
 
 ;
 

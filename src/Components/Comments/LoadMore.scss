@@ -1,0 +1,15 @@
+
+.load-more {
+
+    &.parent {
+        padding: 12px;
+        text-align: center;
+    }
+
+    &:not(.parent) {
+        font-size: 0.8rem;
+        font-weight: 600;
+        padding: 10px;
+    }
+
+}

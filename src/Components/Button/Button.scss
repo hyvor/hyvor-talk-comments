@@ -3,6 +3,11 @@
 
     font-weight: 600;
 
+    &.normal {
+        padding: 9px 23px;
+        font-size: 0.8rem;
+    }
+
     &.small {
         padding: 4px 12px;
         font-size: 0.7rem;

@@ -31,7 +31,7 @@ it('displays', function() {
 
 it('adds reacted class and displays only image with custom URL', function() {
 
-    const img = 'https://example.image.png';
+    const img = 'https://example.com/image.png';
     const { container } = render(<Reaction
             reaction={{
                 type: "wow",

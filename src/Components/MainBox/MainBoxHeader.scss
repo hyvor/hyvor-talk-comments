@@ -1,14 +1,10 @@
 .main-box-header-wrap {
 
-    @include background-color-box-secondary;
-
-    border-top-left-radius: var(--ht-box-radius);
-    border-top-right-radius: var(--ht-box-radius);
+    margin-bottom: 20px;
 
     .main-box-header {
         display: flex;
         align-items: center;
-        padding:20px 30px;
     }
 
     .main-box-header-left {
@@ -17,8 +13,10 @@
 
     .main-box-header-right {
 
-
-
     }
 
+}
+
+.comments-count {
+    font-size: 1.125rem;
 }

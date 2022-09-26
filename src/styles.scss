@@ -7,8 +7,9 @@ $mobile: 640px;
 @import 'Components/MainBox/MainBoxHeader';
 @import 'Components/Comments/Comments';
 @import 'Components/Comments/Comment/Comment';
-@import 'Components/Comments/LoadMore';
 @import 'Components/Comments/Comment/Collapser';
+@import 'Components/Comments/Comment/Votes';
+@import 'Components/Comments/LoadMore';
 @import 'Components/Comments/Sorter';
 
 @import 'Components/CommentsCount/CommentsCount';

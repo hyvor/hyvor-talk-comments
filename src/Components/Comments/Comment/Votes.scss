@@ -1,0 +1,11 @@
+.vote {
+    margin-right: 8px;
+    display: inline-block;
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+.vote-number {
+    margin-left: 3px;
+}

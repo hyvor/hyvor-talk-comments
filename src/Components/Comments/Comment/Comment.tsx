@@ -10,7 +10,7 @@ import {htDomain, website} from "../../../stores/configStore";
 import CommentsList from "../CommentsList";
 import Collapser, {Expander} from "./Collapser";
 import {useState} from "preact/compat";
-import CommentActions from "./CommentActions";
+import Votes from "./Votes";
 
 export default function Comment({ comment } : { comment: CommentType }) {
 
@@ -65,7 +65,9 @@ export default function Comment({ comment } : { comment: CommentType }) {
                     {comment.content}
                 </div>
 
-                <CommentActions />
+                <div className="comment-actions">
+                    <Votes comment={comment} />
+                </div>
 
                 {
                     isCollapsed &&

@@ -39,6 +39,7 @@ export interface Page {
 }
 
 export type SortType = 'top' | 'newest' | 'oldest';
+export type VoteType = 'up' | 'down';
 
 export interface Website {
 
@@ -49,6 +50,8 @@ export interface Website {
 
     default_sort: SortType,
     default_avatar: string | null,
+
+    voting: 'both' | 'upvotes' | 'none',
 
     text_comment_box: string | null,
     text_reply_box: string | null,

@@ -29,9 +29,6 @@ export const handleReactionClick = (type: ReactionType) => {
         endpoint: '/react',
         data: {
             type
-        },
-        success: (data) => {
-            console.log(data)
         }
     })
 

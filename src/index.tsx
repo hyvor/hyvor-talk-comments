@@ -44,7 +44,7 @@ class HyvorTalkComments extends HTMLElement {
                 --ht-color-accent-text: #ffffff;
                 --ht-color-box: #ffffff;
                 --ht-color-box-text: #111111;
-                --ht-color-box-text-light: #aaaaaa;
+                --ht-color-box-text-light: #7b7b7b;
                 --ht-color-box-secondary: #fafafa;
                 --ht-color-box-secondary-text: #484848;
                 --ht-color-background-text: #111111;

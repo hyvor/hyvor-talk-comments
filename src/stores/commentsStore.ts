@@ -30,6 +30,18 @@ export const commentsHasMoreIdsState = atom<CommentsListIndex[]>();
 
 // === Helpers ===
 
+export function updateComment<T extends keyof Comment>(id: number, key: T, value: Comment[T]) {
+    const comments = {...commentsIndexedState.get()};
+    const comment = comments[id];
+
+    if (!comment)
+        return;
+
+    comments[id] = {...comment, [key]: value};
+
+    commentsIndexedState.set(comments);
+}
+
 export function getRepliesCount(commentId: number, nested: boolean = false) {
 
     const commentIds = commentsListState.get()[commentId] || [];

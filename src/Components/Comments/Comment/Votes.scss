@@ -1,11 +1,15 @@
 .vote {
-    margin-right: 8px;
+    user-select: none;
+    margin-right: 7px;
     display: inline-block;
     cursor: pointer;
-    &:hover {
-        text-decoration: underline;
+    .icon {
+        font-size: 0.75rem;
+    }
+    &.voted {
+        color: var(--ht-color-accent);
     }
 }
 .vote-number {
-    margin-left: 3px;
+    margin-left: 2px;
 }

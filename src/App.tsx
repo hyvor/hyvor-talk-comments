@@ -15,6 +15,7 @@ import {
 } from "./stores/commentsStore";
 import AuthService from "./services/AuthService";
 import {userState} from "./stores/userStore";
+import {userCommentVoteState} from "./stores/votesStore";
 
 interface AppProps {
 
@@ -71,6 +72,7 @@ export default function App(props: AppProps) {
 
                 if (data.user_page_state) {
                     userReactionState.set(data.user_page_state.reaction);
+                    userCommentVoteState.set(data.user_page_state.votes);
                 }
 
                 if (data.user) {

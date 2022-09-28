@@ -82,4 +82,11 @@
 .comment-actions {
     font-size: 0.8rem;
     color: var(--ht-color-box-text-light);
+    display: flex;
+    .reply-button {
+        margin-left: 5px;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }

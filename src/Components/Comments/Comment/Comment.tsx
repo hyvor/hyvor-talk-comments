@@ -67,6 +67,7 @@ export default function Comment({ comment } : { comment: CommentType }) {
 
                 <div className="comment-actions">
                     <Votes comment={comment} />
+                    <button class="reply-button">{ t('reply') }</button>
                 </div>
 
                 {

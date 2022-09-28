@@ -14,7 +14,9 @@ export const DefaultComponents = {
     'icon.heart': icons.heart,
     'icon.caret': icons.caret,
     'icon.thumbsUp': icons.thumbsUp,
-    'icon.thumbsDown': icons.thumbsDown
+    'icon.thumbsDown': icons.thumbsDown,
+    'icon.thumbsUpActive': icons.thumbsUpActive,
+    'icon.thumbsDownActive': icons.thumbsDownActive
 }
 
 type ReplaceableComponentProps<T extends keyof typeof DefaultComponents> = {

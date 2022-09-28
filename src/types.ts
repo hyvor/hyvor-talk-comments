@@ -14,7 +14,7 @@ export interface UserPageState {
     notifs_count: number,
     last_visit: number,
     reaction: ReactionType | null,
-    votes: string[], // TODO: Change this
+    votes: Record<number, VoteType>
 
 }
 
@@ -78,15 +78,6 @@ export interface ReactionConfig {
     text: string
 }
 
-/**
- * Returned from the /react endpoint
- * showing what changed
- */
-export interface ReactionChange {
-    increased: ReactionType | null,
-    decreased: ReactionType | null
-}
-
 export interface Language {
     code: string,
     translations: Partial<TranslationsType>,
@@ -130,7 +121,8 @@ export type TranslationsKeys =
     'expand_comment' |
     'expand_comments' |
     'load_more_comments' |
-    'more_replies'
+    'more_replies' |
+    'reply'
 
 ;
 

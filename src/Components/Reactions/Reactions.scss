@@ -22,23 +22,17 @@
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    padding: 8px 15px;
+    padding: 8px 20px;
     cursor: pointer;
     transition:.2s transform;
     min-width: 70px;
     font-weight: bold;
     margin-bottom: 10px; // when wrapping
+    filter: grayscale(0.5);
 
     &.reacted {
-        @include mixins.background-color-accent;
+        filter: initial;
     }
-
-    &:hover {
-        transform: scale(1.1);
-    }
-    /*&:not(:last-child) {
-        margin-right: 5px;
-    }*/
 
     img {
         width: 32px;

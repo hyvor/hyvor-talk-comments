@@ -108,8 +108,7 @@ export default function App(props: AppProps) {
     }
 
     return <div id="app" part="app" style={{
-        width: 750,
-        margin: "auto"
+        width: "100%"
     }}>
         { body }
     </div>

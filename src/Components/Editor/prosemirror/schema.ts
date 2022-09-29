@@ -53,15 +53,13 @@ export const nodes = {
     image: {
         attrs: {
             src: {},
-            alt: {default: null},
-            title: {default: null}
+            alt: {default: null}
         },
         group: "block",
         draggable: true,
         parseDOM: [{tag: "img[src]", getAttrs(dom: HTMLElement) {
                 return {
                     src: dom.getAttribute("src"),
-                    title: dom.getAttribute("title"),
                     alt: dom.getAttribute("alt")
                 }
             }}],

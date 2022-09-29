@@ -16,7 +16,15 @@ export const DefaultComponents = {
     'icon.thumbsUp': icons.thumbsUp,
     'icon.thumbsDown': icons.thumbsDown,
     'icon.thumbsUpActive': icons.thumbsUpActive,
-    'icon.thumbsDownActive': icons.thumbsDownActive
+    'icon.thumbsDownActive': icons.thumbsDownActive,
+    'icon.link': icons.link,
+    'icon.bold': icons.bold,
+    'icon.italic': icons.italic,
+    'icon.code': icons.code,
+    'icon.quote': icons.quote,
+    'icon.emoji': icons.emoji,
+    'icon.image': icons.image,
+    'icon.gif': icons.gif
 }
 
 type ReplaceableComponentProps<T extends keyof typeof DefaultComponents> = {

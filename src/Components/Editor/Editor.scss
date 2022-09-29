@@ -2,9 +2,47 @@
     display: flex;
 }
 
-.comments-editor {
+.rich-editor {
     flex: 1;
     margin-left: 10px;
     @include background-color-box-secondary;
     border-radius: var(--ht-box-radius);
+    box-shadow: var(--ht-box-shadow);
+}
+
+.comment-writer {
+    padding: 15px;
+    .ProseMirror {
+        min-height: 40px;
+        outline: none!important;
+    }
+}
+.comment-buttons {
+    padding: 10px 15px;
+    position: relative;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 1px;
+        width: 100%;
+        background-color: var(--ht-color-box-text);
+        opacity: 0.06;
+    }
+    .writer-buttons {
+        flex: 1;
+        button {
+            padding: 0 6px;
+            &:first-child {
+                padding-left: 0;
+            }
+        }
+    }
+    .publish-button {
+
+    }
 }

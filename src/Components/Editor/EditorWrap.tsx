@@ -1,4 +1,4 @@
-import Editor from "./Editor";
+import RichEditor from "./RichEditor";
 import EditorUser from "./EditorUser";
 
 
@@ -7,7 +7,7 @@ export default function EditorWrap() {
     return <div class="editor-wrap">
 
         <EditorUser />
-        <Editor />
+        <RichEditor />
 
     </div>
 

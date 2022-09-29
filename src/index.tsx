@@ -39,7 +39,7 @@ class HyvorTalkComments extends HTMLElement {
         style.textContent = `
             :host::part(app) {background-color: ${bg}}
 
-            :host {
+            :host, :host::before, :host::after {
                 --ht-color-accent: #000000;
                 --ht-color-accent-text: #ffffff;
                 --ht-color-box: #ffffff;

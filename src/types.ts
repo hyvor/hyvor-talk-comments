@@ -122,7 +122,10 @@ export type TranslationsKeys =
     'expand_comments' |
     'load_more_comments' |
     'more_replies' |
-    'reply'
+    'reply' |
+
+    'comment_button_text' |
+    'reply_button_text'
 
 ;
 

@@ -1,5 +1,5 @@
 import {h} from 'preact'
-import Editor from "../Editor/Editor";
+import RichEditor from "../Editor/RichEditor";
 import Comments from "./Comments";
 import EditorWrap from "../Editor/EditorWrap";
 

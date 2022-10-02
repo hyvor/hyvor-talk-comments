@@ -14,6 +14,8 @@ export default function RichEditor() {
     const ref = useRef<null | HTMLDivElement>(null)
     const [editor, setEditor] = useState<null | EditorView>(null);
 
+    const [comment, setComment] = useState('');
+
     useEffect(() => {
 
         if (editor)
@@ -24,16 +26,27 @@ export default function RichEditor() {
             marks: schema.spec.marks
         })
 
-        const e = new EditorView(ref.current as HTMLDivElement, {
+        const view = new EditorView(ref.current as HTMLDivElement, {
             state: EditorState.create({
                 doc: DOMParser.fromSchema(mySchema).parse(ref.current as HTMLDivElement),
                 plugins: getPlugins(mySchema)
-            })
+            }),
+            dispatchTransaction: (tr) => {
+                setComment(JSON.stringify(tr.doc.toJSON()))
+                const state = view.state.apply(tr)
+                view.updateState(state)
+            }
         })
 
-        setEditor(e);
+        setEditor(view);
 
     }, [])
+
+    function handlePublish() {
+
+        console.log(comment)
+
+    }
 
     return <div class="rich-editor">
 
@@ -53,7 +66,7 @@ export default function RichEditor() {
                     <Button name="quote" editor={editor}></Button>
                 </div>
                 <div class="publish-button">
-                    <AccentButton>{ t('comment_button_text') }</AccentButton>
+                    <AccentButton onClick={handlePublish}>{ t('comment_button_text') }</AccentButton>
                 </div>
             </div>
         }

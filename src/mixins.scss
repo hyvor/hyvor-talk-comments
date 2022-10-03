@@ -12,7 +12,7 @@
 
 @mixin background-color-box-secondary {
     background-color: var(--ht-color-box-secondary);
-    color: var(----ht-color-box-secondary-text);
+    color: var(--ht-color-box-secondary-text);
 }
 
 @mixin background-color-accent {

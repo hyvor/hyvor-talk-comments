@@ -1,0 +1,34 @@
+.panel-gif {
+
+    input {
+        @include background-color-box-secondary;
+        width: 100%;
+        padding: 7px 10px;
+        border: none;
+        border-radius: var(--ht-box-radius);
+        outline: none;
+    }
+
+    img {
+        margin-right: 10px;
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+
+    .gifs {
+        margin: 15px 0;
+        max-height: 250px;
+        overflow: auto;
+        text-align: center;
+    }
+
+    .gif-footer {
+        font-size: 0.65rem;
+        text-align: right;
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+    }
+
+}

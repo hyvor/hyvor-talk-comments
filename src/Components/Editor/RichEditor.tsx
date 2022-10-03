@@ -1,4 +1,4 @@
-import {h} from 'preact'
+import {Fragment, h} from 'preact'
 import {useEffect, useRef, useState} from "preact/compat";
 import {schema} from "./prosemirror/schema";
 import {Schema, DOMParser} from "prosemirror-model";
@@ -8,11 +8,18 @@ import getPlugins from "./prosemirror/plugins";
 import Icon from "../Icon/Icon";
 import {AccentButton} from "../Button/Button";
 import t from "../../helpers/stateful/t";
+import Emoji from "./Panels/Emoji";
+import Gif from "./Panels/Gif";
+import Image from "./Panels/Image";
+import Link from "./Panels/Link";
+
+type PanelType = 'emoji' | 'image' | 'gif' | 'link';
 
 export default function RichEditor() {
 
     const ref = useRef<null | HTMLDivElement>(null)
     const [editor, setEditor] = useState<null | EditorView>(null);
+    const [panel, setPanel] = useState<null | PanelType>(null);
 
     const [comment, setComment] = useState('');
 
@@ -48,27 +55,64 @@ export default function RichEditor() {
 
     }
 
+    function handleButtonClick(type: ButtonType) {
+
+        if (
+            type === 'emoji' ||
+            type === 'image' ||
+            type === 'gif' ||
+            type === 'link'
+        ) {
+            setPanel(panel === type ? null : type);
+        }
+
+
+
+    }
+
     return <div class="rich-editor">
 
         <div class="comment-writer" ref={ref}/>
 
         {
             editor &&
-            <div class="comment-buttons">
-                <div class="writer-buttons">
-                    <Button name="emoji" editor={editor}></Button>
-                    <Button name="image" editor={editor}></Button>
-                    <Button name="gif" editor={editor}></Button>
-                    <Button name="link" editor={editor}></Button>
-                    <Button name="bold" editor={editor}></Button>
-                    <Button name="italic" editor={editor}></Button>
-                    <Button name="code" editor={editor}></Button>
-                    <Button name="quote" editor={editor}></Button>
+
+            <Fragment>
+
+                <div class="comment-buttons">
+                    <div class="writer-buttons">
+                        {
+                            ([
+                                "emoji",
+                                "image",
+                                "gif",
+                                "link",
+                                "bold",
+                                "italic",
+                                "code",
+                                "quote"
+                            ] as ButtonType[]).map(name =>
+                                <Button
+                                    name={name}
+                                    editor={editor}
+                                    onClick={handleButtonClick}
+                                    isActive={panel === name}
+                                />
+                            )
+                        }
+                    </div>
+                    <div class="publish-button">
+                        <AccentButton onClick={handlePublish}>{t('comment_button_text')}</AccentButton>
+                    </div>
                 </div>
-                <div class="publish-button">
-                    <AccentButton onClick={handlePublish}>{ t('comment_button_text') }</AccentButton>
-                </div>
-            </div>
+
+
+                {
+                    panel && <Panel type={panel} editor={editor}/>
+                }
+
+            </Fragment>
+
         }
 
     </div>
@@ -79,13 +123,30 @@ type ButtonType =  'link' | 'bold' | 'italic' | 'quote' | 'code' | 'image' | 'gi
 
 interface ButtonProps {
     name: ButtonType,
-    editor: EditorView
+    editor: EditorView,
+    onClick: (name: ButtonType) => void,
+    isActive: boolean
 }
 
-function Button({ name, editor } : ButtonProps) {
+function Button({ name, editor, onClick, isActive } : ButtonProps) {
 
-    return <button class="comment-button">
+    return <button
+        class={"comment-button" + (isActive ? " active" : "")}
+        onClick={() => onClick(name)}
+        aria-label={name}
+    >
         <Icon name={name} />
     </button>
+
+}
+
+function Panel({ type, editor } : { type: PanelType, editor: EditorView }) {
+
+    return <div class="panel">
+        { type === 'emoji' && <Emoji /> }
+        { type === 'image' && <Image /> }
+        { type === 'gif' && <Gif editor={editor} /> }
+        { type === 'link' && <Link /> }
+    </div>
 
 }

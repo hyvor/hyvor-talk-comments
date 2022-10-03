@@ -5,7 +5,7 @@
 .rich-editor {
     flex: 1;
     margin-left: 10px;
-    @include background-color-box-secondary;
+    @include background-color-box;
     border-radius: var(--ht-box-radius);
     box-shadow: var(--ht-box-shadow);
 }
@@ -15,14 +15,38 @@
     .ProseMirror {
         min-height: 40px;
         outline: none!important;
+        p {
+            margin: 0;
+        }
     }
 }
 .comment-buttons {
+    display: flex;
+    align-items: center;
+    .writer-buttons {
+        flex: 1;
+        button {
+            padding: 0 6px;
+            &:first-child {
+                padding-left: 0;
+            }
+            &.active {
+                color: var(--ht-color-accent);
+            }
+        }
+        svg {
+            vertical-align: middle;
+        }
+    }
+    .publish-button {
+
+    }
+}
+
+.comment-buttons, .panel {
     padding: 10px 15px;
     position: relative;
     font-size: 0.9rem;
-    display: flex;
-    align-items: center;
     &:before {
         content: "";
         position: absolute;
@@ -33,19 +57,8 @@
         background-color: var(--ht-color-box-text);
         opacity: 0.06;
     }
-    .writer-buttons {
-        flex: 1;
-        button {
-            padding: 0 6px;
-            &:first-child {
-                padding-left: 0;
-            }
-        }
-        svg {
-            vertical-align: middle;
-        }
-    }
-    .publish-button {
+}
 
-    }
+.panel {
+    padding: 15px;
 }

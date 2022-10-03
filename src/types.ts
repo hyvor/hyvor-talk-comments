@@ -125,7 +125,12 @@ export type TranslationsKeys =
     'reply' |
 
     'comment_button_text' |
-    'reply_button_text'
+    'reply_button_text' |
+    'search' |
+
+
+    'no_results' |
+    'powered_by'
 
 ;
 

@@ -1,6 +1,6 @@
 import {Schema, NodeSpec, MarkSpec, DOMOutputSpec} from "prosemirror-model"
 
-const pDOM: DOMOutputSpec = ["div", 0], blockquoteDOM: DOMOutputSpec = ["blockquote", 0],
+const pDOM: DOMOutputSpec = ["p", 0], blockquoteDOM: DOMOutputSpec = ["blockquote", 0],
     hrDOM: DOMOutputSpec = ["hr"], preDOM: DOMOutputSpec = ["pre", ["code", 0]],
     brDOM: DOMOutputSpec = ["br"]
 
@@ -16,7 +16,7 @@ export const nodes = {
     paragraph: {
         content: "inline*",
         group: "block",
-        parseDOM: [{tag: "p"}, {tag: "div"}],
+        parseDOM: [{tag: "p"}],
         toDOM() { return pDOM }
     } as NodeSpec,
 

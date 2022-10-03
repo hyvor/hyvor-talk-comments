@@ -1,6 +1,8 @@
 import {h, Fragment} from "preact";
 
-export default function Loader({ size } : { size: 'small' | 'medium' | 'large' }) {
+export type LoaderSize = 'small' | 'medium' | 'large';
+
+export default function Loader({ size } : { size: LoaderSize }) {
 
     const sizePx = {
         'small': 6,

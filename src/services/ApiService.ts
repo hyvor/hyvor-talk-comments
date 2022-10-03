@@ -1,12 +1,15 @@
 import {htDomain, website, websiteIdState} from "../stores/configStore";
 import {page} from "../stores/pageStore";
 import AuthService from "./AuthService";
+import objToQueryString from "../helpers/stateless/objToQueryString";
 
 interface CallOptions<T> {
 
+    customUrl?: string,
+
     method: 'post' | 'get',
-    endpoint: string,
-    data: object | FormData,
+    endpoint?: string,
+    data?: object | FormData,
 
     complete?: () => void,
     success?: (data: T) => void,
@@ -17,7 +20,12 @@ export default class ApiService {
 
     static call<T>(opt: CallOptions<T>) {
 
-        let url = htDomain.get() + "/api/embed/v3/" + (websiteIdState.get()) + opt.endpoint
+        let url = opt.customUrl ||
+            htDomain.get() + "/api/embed/v3/" + (websiteIdState.get()) + opt.endpoint
+
+        if (opt.method === 'get' && opt.data) {
+            url += "?" + objToQueryString(opt.data)
+        }
 
         const xhr = new XMLHttpRequest
         xhr.onreadystatechange = function() {
@@ -36,7 +44,7 @@ export default class ApiService {
                 }
             }
         }
-        xhr.open("POST", url)
+        xhr.open(opt.method, url)
 
         if (!(opt.data instanceof FormData)) {
             xhr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
@@ -47,7 +55,12 @@ export default class ApiService {
             xhr.setRequestHeader('X-Token', token);
         }
 
-        xhr.send(opt.data instanceof FormData ? opt.data : JSON.stringify(opt.data))
+        let data;
+        if (opt.method === 'post') {
+            data = opt.data instanceof FormData ? opt.data : JSON.stringify(opt.data);
+        }
+
+        xhr.send(data)
 
         return xhr
     }

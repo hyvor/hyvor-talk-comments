@@ -1,7 +1,8 @@
 import {h} from 'preact'
 import ReplaceableComponent from "../ReplaceableComponent";
+import {LoaderSize} from "./Loader";
 
-export default function LoaderWrap({ padding } : { padding: number }) {
+export default function LoaderWrap({ padding, size = 'small' } : { padding: number, size?: LoaderSize }) {
 
     return <div
         className="loader-wrap"
@@ -10,7 +11,7 @@ export default function LoaderWrap({ padding } : { padding: number }) {
     >
         <ReplaceableComponent
             name="loader"
-            size="large"
+            size={size}
         />
     </div>
 

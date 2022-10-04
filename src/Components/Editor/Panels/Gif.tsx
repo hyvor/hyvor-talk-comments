@@ -2,9 +2,10 @@ import {useEffect, useRef, useState} from "preact/compat";
 import t from "../../../helpers/stateful/t";
 import LoaderWrap from "../../Loader/LoaderWrap";
 import NoResults from "../../NoResults/NoResults";
-import {EditorView} from "prosemirror-view";
 import ApiService from "../../../services/ApiService";
 import {Fragment} from "preact";
+import {HBEditorView} from "../prosemirror/types";
+import {addImage} from "../prosemirror/helpers";
 
 interface GifType {
 
@@ -15,7 +16,7 @@ interface GifType {
 
 }
 
-export default function Gif({ editor } : { editor: EditorView }) {
+export default function Gif({ editor, onClose } : { editor: HBEditorView, onClose: Function }) {
 
     const [search, setSearch] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +26,8 @@ export default function Gif({ editor } : { editor: EditorView }) {
     const inputRef = useRef<null | HTMLInputElement>(null);
 
     function addGif(url: string, title: string) {
-        console.log(editor);
+        addImage(editor, url, title);
+        onClose();
     }
 
     function loadGifs(offset = 0) {

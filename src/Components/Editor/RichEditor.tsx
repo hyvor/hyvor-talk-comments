@@ -12,13 +12,14 @@ import Emoji from "./Panels/Emoji";
 import Gif from "./Panels/Gif";
 import Image from "./Panels/Image";
 import Link from "./Panels/Link";
+import {HBEditorView} from "./prosemirror/types";
 
 type PanelType = 'emoji' | 'image' | 'gif' | 'link';
 
 export default function RichEditor() {
 
     const ref = useRef<null | HTMLDivElement>(null)
-    const [editor, setEditor] = useState<null | EditorView>(null);
+    const [editor, setEditor] = useState<null | HBEditorView>(null);
     const [panel, setPanel] = useState<null | PanelType>(null);
 
     const [comment, setComment] = useState('');
@@ -108,7 +109,7 @@ export default function RichEditor() {
 
 
                 {
-                    panel && <Panel type={panel} editor={editor}/>
+                    panel && <Panel type={panel} onClose={() => setPanel(null)} editor={editor}/>
                 }
 
             </Fragment>
@@ -123,7 +124,7 @@ type ButtonType =  'link' | 'bold' | 'italic' | 'quote' | 'code' | 'image' | 'gi
 
 interface ButtonProps {
     name: ButtonType,
-    editor: EditorView,
+    editor: HBEditorView,
     onClick: (name: ButtonType) => void,
     isActive: boolean
 }
@@ -140,12 +141,12 @@ function Button({ name, editor, onClick, isActive } : ButtonProps) {
 
 }
 
-function Panel({ type, editor } : { type: PanelType, editor: EditorView }) {
+function Panel({ type, editor, onClose } : { type: PanelType, editor: HBEditorView, onClose: Function }) {
 
     return <div class="panel">
         { type === 'emoji' && <Emoji /> }
         { type === 'image' && <Image /> }
-        { type === 'gif' && <Gif editor={editor} /> }
+        { type === 'gif' && <Gif editor={editor} onClose={onClose} /> }
         { type === 'link' && <Link /> }
     </div>
 

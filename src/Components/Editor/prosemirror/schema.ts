@@ -47,9 +47,7 @@ export const nodes = {
         group: "inline"
     } as NodeSpec,
 
-    /// An inline image (`<img>`) node. Supports `src`,
-    /// `alt`, and `href` attributes. The latter two default to the empty
-    /// string.
+    // A block image (`<img>`)
     image: {
         attrs: {
             src: {},
@@ -57,13 +55,14 @@ export const nodes = {
         },
         group: "block",
         draggable: true,
+        selectable: true,
         parseDOM: [{tag: "img[src]", getAttrs(dom: HTMLElement) {
                 return {
                     src: dom.getAttribute("src"),
                     alt: dom.getAttribute("alt")
                 }
             }}],
-        toDOM(node) { let {src, alt, title} = node.attrs; return ["img", {src, alt, title}] }
+        toDOM(node) { let {src, alt} = node.attrs; return ["img", {src, alt}] }
     } as NodeSpec,
 
 }

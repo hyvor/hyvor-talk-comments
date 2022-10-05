@@ -130,7 +130,12 @@ export type TranslationsKeys =
 
 
     'no_results' |
-    'powered_by'
+    'powered_by' |
+
+    'upload_image' |
+    'or' |
+    'paste_url' |
+    'add'
 
 ;
 

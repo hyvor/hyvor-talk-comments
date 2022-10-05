@@ -1,7 +1,7 @@
 import {Fragment, h} from 'preact'
 import {useEffect, useRef, useState} from "preact/compat";
 import {schema} from "./prosemirror/schema";
-import {Schema, DOMParser} from "prosemirror-model";
+import {Schema, DOMParser, MarkType, NodeType} from "prosemirror-model";
 import {EditorState} from "prosemirror-state"
 import {EditorView} from "prosemirror-view"
 import getPlugins from "./prosemirror/plugins";
@@ -13,8 +13,36 @@ import Gif from "./Panels/Gif";
 import Image from "./Panels/Image";
 import Link from "./Panels/Link";
 import {HBEditorView} from "./prosemirror/types";
+import {lift, toggleMark, wrapIn} from "prosemirror-commands";
 
 type PanelType = 'emoji' | 'image' | 'gif' | 'link';
+
+function isMarkActive(state: EditorState, type: MarkType) : boolean {
+    let {from, $from, to, empty} = state.selection
+    if (empty) return Boolean(type.isInSet(state.storedMarks || $from.marks()))
+    else return state.doc.rangeHasMark(from, to, type)
+}
+
+function isNodeActive(state: EditorState, type: NodeType) : boolean {
+    const $from = state.selection.$from;
+
+    let wrapperDepth;
+    let currentDepth = $from.depth;
+    while (currentDepth > 0) {
+        const currentNodeAtDepth = $from.node(currentDepth);
+
+        /* Previous versions used node.hasMarkup but that */
+        /* mandates deep equality on attrs. We just want to */
+        /* ensure that everyting in the passed in attrs */
+        /* is present in the node at the depth */
+        const isType = type.name === currentNodeAtDepth.type.name;
+
+        if (isType) { wrapperDepth = currentDepth; }
+        currentDepth -= 1;
+    }
+
+    return Boolean(wrapperDepth);
+}
 
 export default function RichEditor() {
 
@@ -56,18 +84,61 @@ export default function RichEditor() {
 
     }
 
+    const panelTypes = ['emoji', 'image', 'gif', 'link'];
+    const markTypes = ['bold', 'italic'];
+
+
+    const markNames = {
+        bold: 'strong',
+        italic: 'em'
+    }
+
     function handleButtonClick(type: ButtonType) {
 
-        if (
-            type === 'emoji' ||
-            type === 'image' ||
-            type === 'gif' ||
-            type === 'link'
-        ) {
-            setPanel(panel === type ? null : type);
+        if (!editor)
+            return;
+
+        if (panelTypes.indexOf(type) >= 0) {
+            setPanel(panel === type ? null : type as PanelType);
         }
 
+        if (markTypes.indexOf(type) >= 0) {
+            toggleMark(
+                editor.state.schema.marks[markNames[type as keyof typeof markNames]]
+            )(editor.state, editor.dispatch);
+            editor.focus();
+        }
 
+        if (type === 'quote') {
+            if (isNodeActive(editor.state, editor.state.schema.nodes.blockquote)) {
+                lift(editor.state, editor.dispatch)
+            } else {
+                wrapIn(editor.state.schema.nodes.blockquote)(editor.state, editor.dispatch)
+            }
+
+            editor.focus();
+        }
+
+    }
+
+    function isActive(type: ButtonType) : boolean {
+
+        if (!editor)
+            return false;
+
+        if (panelTypes.indexOf(type) >= 0) {
+            return panel === type;
+        }
+
+        if (markTypes.indexOf(type) >= 0) {
+            return isMarkActive(editor.state, editor.state.schema.marks[markNames[type as keyof typeof markNames]])
+        }
+
+        if (type === 'quote') {
+            return isNodeActive(editor.state, editor.state.schema.nodes.blockquote);
+        }
+
+        return false;
 
     }
 
@@ -97,7 +168,7 @@ export default function RichEditor() {
                                     name={name}
                                     editor={editor}
                                     onClick={handleButtonClick}
-                                    isActive={panel === name}
+                                    isActive={isActive(name)}
                                 />
                             )
                         }
@@ -145,7 +216,7 @@ function Panel({ type, editor, onClose } : { type: PanelType, editor: HBEditorVi
 
     return <div class="panel">
         { type === 'emoji' && <Emoji /> }
-        { type === 'image' && <Image /> }
+        { type === 'image' && <Image editor={editor} onClose={onClose} /> }
         { type === 'gif' && <Gif editor={editor} onClose={onClose} /> }
         { type === 'link' && <Link /> }
     </div>

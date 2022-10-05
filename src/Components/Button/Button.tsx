@@ -1,6 +1,6 @@
 import {HTMLAttributes} from "preact/compat";
 
-type ButtonSize = 'small' | 'normal';
+type ButtonSize = 'small' | 'medium' | 'normal';
 
 type AccentButtonProps = HTMLAttributes<HTMLButtonElement> & {
     scale?: ButtonSize

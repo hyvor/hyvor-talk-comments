@@ -30,7 +30,7 @@ export default function Emoji() {
 
             ApiService.call<ApiResponse>({
                 method: 'get',
-                endpoint: "/emojis",
+                endpoint: "/media/emojis",
                 success: (data) => {
                     emojiData = data
                     setIsLoading(false);

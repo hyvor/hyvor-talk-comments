@@ -2,9 +2,12 @@
     display: flex;
 }
 
+.editor-user {
+    margin-right: 10px;
+}
+
 .rich-editor {
     flex: 1;
-    margin-left: 10px;
     @include background-color-box;
     border-radius: var(--ht-box-radius);
     box-shadow: var(--ht-box-shadow);

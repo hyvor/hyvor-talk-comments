@@ -1,7 +1,7 @@
 import {htDomain, website, websiteIdState} from "../stores/configStore";
 import {page} from "../stores/pageStore";
 import AuthService from "./AuthService";
-import objToQueryString from "../helpers/stateless/objToQueryString";
+import { objToQueryString } from "../helpers/stateless/query";
 
 interface CallOptions<T> {
 
@@ -16,12 +16,20 @@ interface CallOptions<T> {
     error?: (error: string | null) => void,
 }
 
+export function getEndpointUrl(endpoint: string) {
+    return htDomain.get()+ "/api/embed/v3/" + (websiteIdState.get()) + endpoint;
+}
+
+export function getPageApiEndpointUrl(endpoint: string) {
+    const pageId = page.get().id
+    return getEndpointUrl(`/page/${pageId}` + endpoint)
+}
+
 export default class ApiService {
 
     static call<T>(opt: CallOptions<T>) {
 
-        let url = opt.customUrl ||
-            htDomain.get() + "/api/embed/v3/" + (websiteIdState.get()) + opt.endpoint
+        let url = opt.customUrl || getEndpointUrl(opt.endpoint as string);
 
         if (opt.method === 'get' && opt.data) {
             url += "?" + objToQueryString(opt.data)

@@ -1,6 +1,6 @@
 import {components, componentsDefinitionType, htDomain, language, website, websiteIdState} from "./stores/configStore";
 import ApiService from "./services/ApiService";
-import {InitCallResponse, loadingState} from "./types";
+import {InitCallResponse, loadingState, UserPageState} from "./types";
 import {page} from "./stores/pageStore";
 import {useEffect, useState} from "preact/compat";
 import LoaderWrap from "./Components/Loader/LoaderWrap";
@@ -48,6 +48,11 @@ interface AppProps {
 
 }
 
+export function setUserPageState(userPageState: UserPageState) {
+    userReactionState.set(userPageState.reaction);
+    userCommentVoteState.set(userPageState.votes);
+}
+
 export default function App(props: AppProps) {
 
     websiteIdState.set(props.website.id);
@@ -71,8 +76,7 @@ export default function App(props: AppProps) {
                 language.set(data.language)
 
                 if (data.user_page_state) {
-                    userReactionState.set(data.user_page_state.reaction);
-                    userCommentVoteState.set(data.user_page_state.votes);
+                    setUserPageState(data.user_page_state);
                 }
 
                 if (data.user) {

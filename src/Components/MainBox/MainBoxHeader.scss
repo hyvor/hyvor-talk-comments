@@ -20,3 +20,15 @@
 .comments-count {
     font-size: 1.125rem;
 }
+
+.login-signup {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    a {
+        display: inline-block;
+        padding: 3px;
+        cursor: pointer;
+        margin-left: 2px;
+    }
+}
